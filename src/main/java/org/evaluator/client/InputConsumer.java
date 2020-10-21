@@ -17,7 +17,8 @@ public class InputConsumer implements Consumer<String> {
   private final CommandInvoker commandInvoker;
   private final ArrayListMatchedWordsEvaluator arrayListMatchedWordsEvaluator;
 
-  public InputConsumer(CommandInvoker commandInvoker,
+  public InputConsumer(
+      CommandInvoker commandInvoker,
       ArrayListMatchedWordsEvaluator arrayListMatchedWordsEvaluator) {
     this.commandInvoker = commandInvoker;
     this.arrayListMatchedWordsEvaluator = arrayListMatchedWordsEvaluator;
@@ -25,9 +26,9 @@ public class InputConsumer implements Consumer<String> {
 
   @Override
   public void accept(String s) {
-    Command command = new PrintUnknownCommandCommand();
+    Command command;
     if (s.startsWith(":")) {
-      command = commandMap.get(s);
+      command = commandMap.getOrDefault(s, new PrintUnknownCommandCommand());
     } else {
       command =
           new ExecuteSearchCommand(

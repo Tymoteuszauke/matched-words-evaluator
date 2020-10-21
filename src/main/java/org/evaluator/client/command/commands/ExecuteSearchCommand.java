@@ -1,5 +1,7 @@
 package org.evaluator.client.command.commands;
 
+import static org.evaluator.util.PrintUtil.printExecutingCommand;
+
 import java.util.List;
 import org.evaluator.client.command.Command;
 import org.evaluator.core.ArrayListMatchedWordsEvaluator;
@@ -23,7 +25,7 @@ public class ExecuteSearchCommand implements Command {
 
   @Override
   public void execute() {
-    System.out.println("Executing command " + getClass().getSimpleName());
+    printExecutingCommand(getClass());
     SourceEvaluations evaluations = arrayListMatchedWordsEvaluator.getEvaluations(inputWords);
     System.out.println(evaluations);
   }

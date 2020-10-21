@@ -1,5 +1,7 @@
 package org.evaluator.client.command.commands;
 
+import static org.evaluator.util.PrintUtil.printExecutingCommand;
+
 import org.evaluator.client.InputReceiver;
 import org.evaluator.client.command.Command;
 
@@ -18,6 +20,8 @@ public class ExitCommand implements Command {
 
   @Override
   public void execute() {
+    printExecutingCommand(getClass());
     inputReceiver.stop();
+    System.exit(0);
   }
 }
