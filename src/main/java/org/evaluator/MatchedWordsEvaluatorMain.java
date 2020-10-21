@@ -26,49 +26,32 @@ public class MatchedWordsEvaluatorMain {
     List<String> inputWords = Arrays.asList(args[1].split(","));
 
     Set<String> fileList = listFilesUsingFileWalkAndVisitor(filePath);
+    Map<String, List<String>> sourceWords = sourceNameWordsMap(fileList);
 
+    MatchedWordsEvaluator matchedWordsEvaluator = new MatchedWordsEvaluator(sourceWords);
+    matchedWordsEvaluator.getEvaluations(inputWords);
+  }
+
+  private static Map<String, List<String>> sourceNameWordsMap(Set<String> fileList) {
     Map<String, List<String>> sourceWords = new HashMap<>();
 
     fileList.forEach(
         path -> {
           try {
-            BufferedReader bufferedReader =
-                new BufferedReader(new FileReader(filePath + "/" + path));
-            List<String> lines = bufferedReader
-                .lines()
-                .collect(Collectors.toList());
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+            List<String> fileWords =
+                bufferedReader
+                    .lines()
+                    .flatMap(s -> Stream.of(s.split("[ |,]")))
+                    .filter(s -> !s.isBlank())
+                    .collect(Collectors.toList());
 
-            List<String> fileWords = lines.stream().flatMap(s -> Stream.of(s.split(" ")))
-                .collect(Collectors.toList());
-
-            sourceWords.put(
-                path,
-                fileWords
-            );
+            sourceWords.put(path, fileWords);
           } catch (FileNotFoundException e) {
             e.printStackTrace();
           }
         });
-
-    Map<String, Double> matchingScore = new HashMap<>();
-
-    sourceWords.forEach(
-        (key, value) -> {
-          double matchedWordsCount =
-              inputWords.stream().filter(value::contains).count();
-
-          matchingScore.put(key, calculatePercents(inputWords.size(), matchedWordsCount));
-        });
-
-    System.out.println(matchingScore);
-  }
-
-  public static double calculatePercents(double total, double obtained) {
-    if (total < 0) {
-      throw new UnsupportedOperationException(
-          "Cannot evaluate percentage for total value less than 0");
-    }
-    return obtained * 100 / total;
+    return sourceWords;
   }
 
   public static Set<String> listFilesUsingFileWalkAndVisitor(String dir) throws IOException {
@@ -79,7 +62,7 @@ public class MatchedWordsEvaluatorMain {
           @Override
           public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
             if (!Files.isDirectory(file)) {
-              fileList.add(file.getFileName().toString());
+              fileList.add(dir + "/" + file.getFileName().toString());
             }
             return FileVisitResult.CONTINUE;
           }
