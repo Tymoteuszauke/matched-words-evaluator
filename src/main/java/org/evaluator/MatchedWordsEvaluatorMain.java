@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -18,18 +17,26 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.evaluator.client.InputConsumer;
+import org.evaluator.client.InputReceiver;
+import org.evaluator.client.command.commands.CommandInvoker;
+import org.evaluator.client.command.commands.ExitCommand;
+import org.evaluator.core.ArrayListMatchedWordsEvaluator;
 
 public class MatchedWordsEvaluatorMain {
 
   public static void main(String[] args) throws IOException {
     String filePath = args[0];
-    List<String> inputWords = Arrays.asList(args[1].split(","));
-
     Set<String> fileList = listFilesUsingFileWalkAndVisitor(filePath);
     Map<String, List<String>> sourceWords = sourceNameWordsMap(fileList);
 
-    MatchedWordsEvaluator matchedWordsEvaluator = new MatchedWordsEvaluator(sourceWords);
-    matchedWordsEvaluator.getEvaluations(inputWords);
+    ArrayListMatchedWordsEvaluator arrayListMatchedWordsEvaluator = new ArrayListMatchedWordsEvaluator(
+        sourceWords);
+    InputConsumer inputConsumer = new InputConsumer(new CommandInvoker(),
+        arrayListMatchedWordsEvaluator);
+    InputReceiver inputReceiver = new InputReceiver(inputConsumer);
+    inputConsumer.addCommand(new ExitCommand(inputReceiver));
+    inputReceiver.getInputs();
   }
 
   private static Map<String, List<String>> sourceNameWordsMap(Set<String> fileList) {
