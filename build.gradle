@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'org.evaluator'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(platform('org.junit:junit-bom:5.7.0'))
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.5.15'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
