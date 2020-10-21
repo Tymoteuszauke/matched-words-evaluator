@@ -1,7 +1,5 @@
 package org.evaluator.dto;
 
-import java.util.StringJoiner;
-
 public class SourceEvaluation implements Comparable<SourceEvaluation> {
 
   private final String sourceName;
@@ -18,10 +16,6 @@ public class SourceEvaluation implements Comparable<SourceEvaluation> {
 
   public String getSourceName() {
     return sourceName;
-  }
-
-  public Double getScore() {
-    return score;
   }
 
   @Override
@@ -55,9 +49,6 @@ public class SourceEvaluation implements Comparable<SourceEvaluation> {
 
   @Override
   public String toString() {
-    return new StringJoiner(", ", SourceEvaluation.class.getSimpleName() + "[", "]")
-        .add("sourceName='" + sourceName + "'")
-        .add("score=" + score)
-        .toString();
+    return sourceName + " : " + score + "%";
   }
 }

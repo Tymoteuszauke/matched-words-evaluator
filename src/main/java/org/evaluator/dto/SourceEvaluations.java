@@ -27,14 +27,14 @@ public class SourceEvaluations {
     return sourceEvaluationsMap.get(sourceName);
   }
 
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", SourceEvaluations.class.getSimpleName() + "[", "]")
-        .add("sourceEvaluationsMap=" + sourceEvaluationsMap)
-        .toString();
-  }
-
   public List<SourceEvaluation> getRankedEvaluations() {
     return rankedEvaluations.stream().sorted().collect(Collectors.toUnmodifiableList());
+  }
+
+  @Override
+  public String toString() {
+    StringJoiner stringJoiner = new StringJoiner("\n");
+    rankedEvaluations.forEach(sourceEvaluation -> stringJoiner.add(sourceEvaluation.toString()));
+    return stringJoiner.toString();
   }
 }
