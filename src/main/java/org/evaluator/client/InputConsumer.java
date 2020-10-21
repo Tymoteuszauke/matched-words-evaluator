@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.evaluator.client.command.Command;
-import org.evaluator.client.command.commands.CommandInvoker;
+import org.evaluator.client.command.CommandInvoker;
 import org.evaluator.client.command.commands.ExecuteSearchCommand;
 import org.evaluator.client.command.commands.PrintUnknownCommandCommand;
 import org.evaluator.core.ArrayListMatchedWordsEvaluator;

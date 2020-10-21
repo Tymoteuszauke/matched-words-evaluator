@@ -1,6 +1,4 @@
-package org.evaluator.client.command.commands;
-
-import org.evaluator.client.command.Command;
+package org.evaluator.client.command;
 
 public class CommandInvoker {
 

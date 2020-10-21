@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.evaluator.client.InputConsumer;
 import org.evaluator.client.InputReceiver;
-import org.evaluator.client.command.commands.CommandInvoker;
+import org.evaluator.client.command.CommandInvoker;
 import org.evaluator.client.command.commands.ExitCommand;
 import org.evaluator.core.ArrayListMatchedWordsEvaluator;
 
