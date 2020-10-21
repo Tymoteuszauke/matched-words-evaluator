@@ -10,17 +10,17 @@ import java.util.stream.Collectors;
 public class SourceEvaluations {
 
   private final Map<String, SourceEvaluation> sourceEvaluationsMap = new HashMap<>();
-  private final List<SourceEvaluation> rankedEvaluations = new ArrayList<>();
+  private final List<SourceEvaluation> evaluations = new ArrayList<>();
 
   public void put(SourceEvaluation sourceEvaluation) {
     sourceEvaluationsMap.put(sourceEvaluation.getSourceName(), sourceEvaluation);
-    rankedEvaluations.add(sourceEvaluation);
+    evaluations.add(sourceEvaluation);
   }
 
   public void put(String sourceName, double score) {
     SourceEvaluation sourceEvaluation = SourceEvaluation.of(sourceName, score);
     sourceEvaluationsMap.put(sourceName, sourceEvaluation);
-    rankedEvaluations.add(sourceEvaluation);
+    evaluations.add(sourceEvaluation);
   }
 
   public SourceEvaluation get(String sourceName) {
@@ -28,13 +28,14 @@ public class SourceEvaluations {
   }
 
   public List<SourceEvaluation> getRankedEvaluations() {
-    return rankedEvaluations.stream().sorted().collect(Collectors.toUnmodifiableList());
+    return evaluations.stream().sorted().collect(Collectors.toUnmodifiableList());
   }
 
   @Override
   public String toString() {
     StringJoiner stringJoiner = new StringJoiner("\n");
-    rankedEvaluations.forEach(sourceEvaluation -> stringJoiner.add(sourceEvaluation.toString()));
+    getRankedEvaluations()
+        .forEach(sourceEvaluation -> stringJoiner.add(sourceEvaluation.toString()));
     return stringJoiner.toString();
   }
 }

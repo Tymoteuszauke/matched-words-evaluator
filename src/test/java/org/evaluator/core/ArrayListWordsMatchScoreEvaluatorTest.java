@@ -1,26 +1,28 @@
-package org.evaluator;
+package org.evaluator.core;
 
+import static org.evaluator.core.InputDataTestFixtures.ANIMAL_SOURCE;
+import static org.evaluator.core.InputDataTestFixtures.FRUIT_SOURCE;
+import static org.evaluator.core.InputDataTestFixtures.MIXED_SOURCE;
+import static org.evaluator.core.InputDataTestFixtures.someAnimalData;
+import static org.evaluator.core.InputDataTestFixtures.someFruitData;
+import static org.evaluator.core.InputDataTestFixtures.someMixedData;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Map;
-import org.evaluator.core.ArrayListMatchedWordsEvaluator;
 import org.evaluator.dto.SourceEvaluation;
 import org.evaluator.dto.SourceEvaluations;
 import org.junit.jupiter.api.Test;
 
-class ArrayListMatchedWordsEvaluatorTest {
-
-  private static final String FRUIT_SOURCE = "fruitSource";
-  private static final String ANIMAL_SOURCE = "animalSource";
-  private static final String MIXED_SOURCE = "mixedSource";
+class ArrayListWordsMatchScoreEvaluatorTest {
 
   @Test
   void rankedEvaluations_shouldReturnInScoreDescOrder() {
-    ArrayListMatchedWordsEvaluator arrayListMatchedWordsEvaluator = new ArrayListMatchedWordsEvaluator(
+    ArrayListWordsMatchScoreEvaluator arrayListMatchedWordsEvaluator = new ArrayListWordsMatchScoreEvaluator(
         Map.of(FRUIT_SOURCE, someFruitData(),
             ANIMAL_SOURCE, someAnimalData(),
             MIXED_SOURCE, someMixedData()));
+
     SourceEvaluations actualEvaluations = arrayListMatchedWordsEvaluator
         .getEvaluations(List.of("apple", "pear"));
 
@@ -30,17 +32,5 @@ class ArrayListMatchedWordsEvaluatorTest {
         SourceEvaluation.of(MIXED_SOURCE, 50));
     assertEquals(actualEvaluations.getRankedEvaluations().get(2),
         SourceEvaluation.of(ANIMAL_SOURCE, 0));
-  }
-
-  List<String> someFruitData() {
-    return List.of("apple", "orange", "pear", "grape", "pineapple");
-  }
-
-  List<String> someAnimalData() {
-    return List.of("tiger", "elephant", "cat", "dog");
-  }
-
-  List<String> someMixedData() {
-    return List.of("elephant", "grape", "cat", "pear");
   }
 }

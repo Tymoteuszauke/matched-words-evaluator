@@ -19,6 +19,5 @@ public class ExitCommand implements Command {
   @Override
   public void execute() {
     inputReceiver.stop();
-    System.exit(0);
   }
 }

@@ -1,25 +1,25 @@
 package org.evaluator.client;
 
+import java.io.InputStream;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class InputReceiver {
 
   private final Consumer<String> inputConsumer;
+  private final InputStream inputStream;
   private boolean isRunning = true;
 
-  public InputReceiver(Consumer<String> inputConsumer) {
+  public InputReceiver(Consumer<String> inputConsumer, InputStream inputStream) {
     this.inputConsumer = inputConsumer;
+    this.inputStream = inputStream;
   }
 
-  public void getInputs() {
-    boolean run = true;
-    Scanner scanner = new Scanner(System.in);
-//    Console console = System.console();
+  public void receiveInputs() {
+    Scanner scanner = new Scanner(inputStream);
     String command;
-    while (run) {
+    while (isRunning) {
       command = scanner.nextLine();
-//      command = console.readLine("search> ");
       inputConsumer.accept(command);
     }
   }

@@ -9,31 +9,34 @@ import org.evaluator.client.command.Command;
 import org.evaluator.client.command.CommandInvoker;
 import org.evaluator.client.command.commands.ExecuteSearchCommand;
 import org.evaluator.client.command.commands.PrintUnknownCommandCommand;
-import org.evaluator.core.ArrayListMatchedWordsEvaluator;
+import org.evaluator.core.WordsMatchScoreEvaluator;
 
 public class InputConsumer implements Consumer<String> {
 
   private final Map<String, Command> commandMap = new HashMap<>();
   private final CommandInvoker commandInvoker;
-  private final ArrayListMatchedWordsEvaluator arrayListMatchedWordsEvaluator;
+  private final WordsMatchScoreEvaluator wordsMatchScoreEvaluator;
 
-  public InputConsumer(
-      CommandInvoker commandInvoker,
-      ArrayListMatchedWordsEvaluator arrayListMatchedWordsEvaluator) {
+  public InputConsumer(CommandInvoker commandInvoker,
+      WordsMatchScoreEvaluator wordsMatchScoreEvaluator) {
     this.commandInvoker = commandInvoker;
-    this.arrayListMatchedWordsEvaluator = arrayListMatchedWordsEvaluator;
+    this.wordsMatchScoreEvaluator = wordsMatchScoreEvaluator;
   }
 
   @Override
   public void accept(String s) {
     Command command;
     if (s.startsWith(":")) {
-      command = commandMap.getOrDefault(s, new PrintUnknownCommandCommand());
+      command =
+          commandMap.getOrDefault(
+              s,
+              new PrintUnknownCommandCommand(
+                  commandMap.keySet().stream().collect(Collectors.toUnmodifiableList())));
     } else {
       command =
           new ExecuteSearchCommand(
               Stream.of(s.split("[ |,]")).collect(Collectors.toUnmodifiableList()),
-              arrayListMatchedWordsEvaluator);
+              wordsMatchScoreEvaluator);
     }
     commandInvoker.invoke(command);
   }

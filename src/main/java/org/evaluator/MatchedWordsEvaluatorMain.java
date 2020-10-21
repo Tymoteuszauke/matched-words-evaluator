@@ -1,5 +1,7 @@
 package org.evaluator;
 
+import static org.evaluator.trie.Trie.trie;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,6 +12,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -21,22 +25,53 @@ import org.evaluator.client.InputConsumer;
 import org.evaluator.client.InputReceiver;
 import org.evaluator.client.command.CommandInvoker;
 import org.evaluator.client.command.commands.ExitCommand;
-import org.evaluator.core.ArrayListMatchedWordsEvaluator;
+import org.evaluator.core.TrieWordsMatchScoreEvaluator;
+import org.evaluator.core.WordsMatchScoreEvaluator;
+import org.evaluator.trie.Trie;
 
 public class MatchedWordsEvaluatorMain {
 
   public static void main(String[] args) throws IOException {
+    Instant start = Instant.now();
+
     String filePath = args[0];
     Set<String> fileList = listFilesUsingFileWalkAndVisitor(filePath);
-    Map<String, List<String>> sourceWords = sourceNameWordsMap(fileList);
-
-    ArrayListMatchedWordsEvaluator arrayListMatchedWordsEvaluator = new ArrayListMatchedWordsEvaluator(
-        sourceWords);
-    InputConsumer inputConsumer = new InputConsumer(new CommandInvoker(),
-        arrayListMatchedWordsEvaluator);
-    InputReceiver inputReceiver = new InputReceiver(inputConsumer);
+    WordsMatchScoreEvaluator wordsMatchScoreEvaluator =
+        //        new ArrayListMatchedWordsEvaluator(sourceNameWordsMap(fileList));
+        new TrieWordsMatchScoreEvaluator(sourceNameTries(fileList));
+    InputConsumer inputConsumer = new InputConsumer(new CommandInvoker(), wordsMatchScoreEvaluator);
+    InputReceiver inputReceiver = new InputReceiver(inputConsumer, System.in);
     inputConsumer.addCommand(new ExitCommand(inputReceiver));
-    inputReceiver.getInputs();
+    inputReceiver.receiveInputs();
+
+    Instant finish = Instant.now();
+    System.out.println(
+        "Application finished after "
+            + Duration.between(start, finish).toMillis()
+            + " milliseconds");
+    System.exit(0);
+  }
+
+  private static Map<String, Trie> sourceNameTries(Set<String> fileList) {
+    Map<String, Trie> sourceWords = new HashMap<>();
+    fileList.forEach(
+        path -> {
+          try {
+            Trie trie = trie();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+            bufferedReader
+                .lines()
+                .flatMap(s -> Stream.of(s.split("[ |,]")))
+                .filter(s -> !s.isBlank())
+                .forEach(trie::insert);
+
+            sourceWords.put(path, trie);
+          } catch (FileNotFoundException e) {
+            e.printStackTrace();
+          }
+        });
+    System.out.println(sourceWords);
+    return sourceWords;
   }
 
   private static Map<String, List<String>> sourceNameWordsMap(Set<String> fileList) {
