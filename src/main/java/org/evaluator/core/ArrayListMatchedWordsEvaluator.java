@@ -1,18 +1,19 @@
-package org.evaluator;
+package org.evaluator.core;
 
 import java.util.List;
 import java.util.Map;
 import org.evaluator.dto.SourceEvaluation;
 import org.evaluator.dto.SourceEvaluations;
 
-public class MatchedWordsEvaluator {
+public class ArrayListMatchedWordsEvaluator implements MatchedWordsEvaluator {
 
   private final Map<String, List<String>> wordsData;
 
-  public MatchedWordsEvaluator(Map<String, List<String>> wordsData) {
+  public ArrayListMatchedWordsEvaluator(Map<String, List<String>> wordsData) {
     this.wordsData = wordsData;
   }
 
+  @Override
   public SourceEvaluations getEvaluations(List<String> inputWords) {
     SourceEvaluations scores = new SourceEvaluations();
 
@@ -25,13 +26,5 @@ public class MatchedWordsEvaluator {
         });
 
     return scores;
-  }
-
-  private double calculatePercents(double total, double obtained) {
-    if (total < 0) {
-      throw new UnsupportedOperationException(
-          "Cannot evaluate percentage for total value less than 0");
-    }
-    return obtained * 100 / total;
   }
 }

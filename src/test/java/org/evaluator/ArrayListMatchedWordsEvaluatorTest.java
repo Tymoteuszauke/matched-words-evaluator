@@ -4,11 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Map;
+import org.evaluator.core.ArrayListMatchedWordsEvaluator;
 import org.evaluator.dto.SourceEvaluation;
 import org.evaluator.dto.SourceEvaluations;
 import org.junit.jupiter.api.Test;
 
-class MatchedWordsEvaluatorTest {
+class ArrayListMatchedWordsEvaluatorTest {
 
   private static final String FRUIT_SOURCE = "fruitSource";
   private static final String ANIMAL_SOURCE = "animalSource";
@@ -16,11 +17,11 @@ class MatchedWordsEvaluatorTest {
 
   @Test
   void rankedEvaluations_shouldReturnInScoreDescOrder() {
-    MatchedWordsEvaluator matchedWordsEvaluator = new MatchedWordsEvaluator(
+    ArrayListMatchedWordsEvaluator arrayListMatchedWordsEvaluator = new ArrayListMatchedWordsEvaluator(
         Map.of(FRUIT_SOURCE, someFruitData(),
             ANIMAL_SOURCE, someAnimalData(),
             MIXED_SOURCE, someMixedData()));
-    SourceEvaluations actualEvaluations = matchedWordsEvaluator
+    SourceEvaluations actualEvaluations = arrayListMatchedWordsEvaluator
         .getEvaluations(List.of("apple", "pear"));
 
     assertEquals(actualEvaluations.getRankedEvaluations().get(0),
