@@ -1,5 +1,7 @@
 package org.evaluator.core.dto;
 
+import java.text.NumberFormat;
+
 public class SourceEvaluation implements Comparable<SourceEvaluation> {
 
   private final String sourceName;
@@ -49,6 +51,7 @@ public class SourceEvaluation implements Comparable<SourceEvaluation> {
 
   @Override
   public String toString() {
-    return sourceName + " : " + score + "%";
+    NumberFormat percentageNumberFormat = NumberFormat.getPercentInstance();
+    return sourceName + " : " + percentageNumberFormat.format(score);
   }
 }

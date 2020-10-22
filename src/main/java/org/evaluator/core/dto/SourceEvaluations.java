@@ -18,7 +18,7 @@ public class SourceEvaluations {
   }
 
   public List<SourceEvaluation> getRankedEvaluations() {
-    return evaluations.stream().sorted().collect(Collectors.toUnmodifiableList());
+    return evaluations.stream().sorted().limit(10).collect(Collectors.toUnmodifiableList());
   }
 
   @Override
