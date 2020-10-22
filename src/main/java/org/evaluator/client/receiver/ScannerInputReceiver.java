@@ -1,16 +1,16 @@
-package org.evaluator.client;
+package org.evaluator.client.receiver;
 
 import java.io.InputStream;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-public class InputReceiver {
+public class ScannerInputReceiver implements InputReceiver {
 
   private final Consumer<String> inputConsumer;
   private final InputStream inputStream;
   private boolean isRunning = true;
 
-  public InputReceiver(Consumer<String> inputConsumer, InputStream inputStream) {
+  public ScannerInputReceiver(Consumer<String> inputConsumer, InputStream inputStream) {
     this.inputConsumer = inputConsumer;
     this.inputStream = inputStream;
   }

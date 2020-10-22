@@ -9,18 +9,18 @@ import org.evaluator.client.command.Command;
 import org.evaluator.client.command.CommandInvoker;
 import org.evaluator.client.command.commands.ExecuteSearchCommand;
 import org.evaluator.client.command.commands.PrintUnknownCommandCommand;
-import org.evaluator.core.WordsMatchScoreEvaluator;
+import org.evaluator.core.WordsMatchEvaluator;
 
 public class InputConsumer implements Consumer<String> {
 
   private final Map<String, Command> commandMap = new HashMap<>();
   private final CommandInvoker commandInvoker;
-  private final WordsMatchScoreEvaluator wordsMatchScoreEvaluator;
+  private final WordsMatchEvaluator wordsMatchEvaluator;
 
   public InputConsumer(CommandInvoker commandInvoker,
-      WordsMatchScoreEvaluator wordsMatchScoreEvaluator) {
+      WordsMatchEvaluator wordsMatchEvaluator) {
     this.commandInvoker = commandInvoker;
-    this.wordsMatchScoreEvaluator = wordsMatchScoreEvaluator;
+    this.wordsMatchEvaluator = wordsMatchEvaluator;
   }
 
   @Override
@@ -36,7 +36,7 @@ public class InputConsumer implements Consumer<String> {
       command =
           new ExecuteSearchCommand(
               Stream.of(s.split("[ |,]")).collect(Collectors.toUnmodifiableList()),
-              wordsMatchScoreEvaluator);
+              wordsMatchEvaluator);
     }
     commandInvoker.invoke(command);
   }
