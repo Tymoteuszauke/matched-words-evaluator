@@ -1,7 +1,6 @@
 package org.evaluator.client.receiver;
 
 import java.io.Console;
-import java.io.InputStream;
 import java.util.function.Consumer;
 
 public class ConsoleInputReceiver implements InputReceiver {
@@ -9,7 +8,7 @@ public class ConsoleInputReceiver implements InputReceiver {
   private final Consumer<String> inputConsumer;
   private boolean isRunning = true;
 
-  public ConsoleInputReceiver(Consumer<String> inputConsumer, InputStream inputStream) {
+  public ConsoleInputReceiver(Consumer<String> inputConsumer) {
     this.inputConsumer = inputConsumer;
   }
 

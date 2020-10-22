@@ -4,8 +4,8 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import org.evaluator.dto.SourceEvaluation;
-import org.evaluator.dto.SourceEvaluations;
+import org.evaluator.core.dto.SourceEvaluation;
+import org.evaluator.core.dto.SourceEvaluations;
 import org.evaluator.trie.Trie;
 
 public class TrieWordsMatchEvaluator implements WordsMatchEvaluator {

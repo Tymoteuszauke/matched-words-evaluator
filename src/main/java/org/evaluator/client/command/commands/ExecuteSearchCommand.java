@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.StringJoiner;
 import org.evaluator.client.command.Command;
 import org.evaluator.core.WordsMatchEvaluator;
-import org.evaluator.dto.SourceEvaluations;
+import org.evaluator.core.dto.SourceEvaluations;
 
 public class ExecuteSearchCommand implements Command {
 

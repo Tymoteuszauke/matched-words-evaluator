@@ -14,13 +14,18 @@ import org.evaluator.core.WordsMatchEvaluator;
 public class InputConsumer implements Consumer<String> {
 
   private final Map<String, Command> commandMap = new HashMap<>();
+
   private final CommandInvoker commandInvoker;
   private final WordsMatchEvaluator wordsMatchEvaluator;
+  private final String inputDelimiters;
 
-  public InputConsumer(CommandInvoker commandInvoker,
-      WordsMatchEvaluator wordsMatchEvaluator) {
+  public InputConsumer(
+      CommandInvoker commandInvoker,
+      WordsMatchEvaluator wordsMatchEvaluator,
+      String inputDelimiters) {
     this.commandInvoker = commandInvoker;
     this.wordsMatchEvaluator = wordsMatchEvaluator;
+    this.inputDelimiters = inputDelimiters;
   }
 
   @Override
@@ -35,7 +40,8 @@ public class InputConsumer implements Consumer<String> {
     } else {
       command =
           new ExecuteSearchCommand(
-              Stream.of(s.split("[ |,]")).collect(Collectors.toUnmodifiableList()),
+              Stream.of(s.split(String.format("[%s]", inputDelimiters)))
+                  .collect(Collectors.toUnmodifiableList()),
               wordsMatchEvaluator);
     }
     commandInvoker.invoke(command);

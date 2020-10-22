@@ -1,4 +1,4 @@
-package org.evaluator.dto;
+package org.evaluator.core.dto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,16 +15,6 @@ public class SourceEvaluations {
   public void put(SourceEvaluation sourceEvaluation) {
     sourceEvaluationsMap.put(sourceEvaluation.getSourceName(), sourceEvaluation);
     evaluations.add(sourceEvaluation);
-  }
-
-  public void put(String sourceName, double score) {
-    SourceEvaluation sourceEvaluation = SourceEvaluation.of(sourceName, score);
-    sourceEvaluationsMap.put(sourceName, sourceEvaluation);
-    evaluations.add(sourceEvaluation);
-  }
-
-  public SourceEvaluation get(String sourceName) {
-    return sourceEvaluationsMap.get(sourceName);
   }
 
   public List<SourceEvaluation> getRankedEvaluations() {

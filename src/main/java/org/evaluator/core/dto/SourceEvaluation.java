@@ -1,4 +1,4 @@
-package org.evaluator.dto;
+package org.evaluator.core.dto;
 
 public class SourceEvaluation implements Comparable<SourceEvaluation> {
 

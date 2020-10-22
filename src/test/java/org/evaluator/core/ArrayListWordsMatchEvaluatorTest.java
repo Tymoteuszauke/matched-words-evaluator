@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Map;
-import org.evaluator.dto.SourceEvaluation;
-import org.evaluator.dto.SourceEvaluations;
+import org.evaluator.core.dto.SourceEvaluation;
+import org.evaluator.core.dto.SourceEvaluations;
 import org.junit.jupiter.api.Test;
 
 class ArrayListWordsMatchEvaluatorTest {

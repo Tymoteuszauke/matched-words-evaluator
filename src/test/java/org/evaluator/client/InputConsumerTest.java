@@ -33,7 +33,7 @@ class InputConsumerTest {
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
-    inputConsumer = new InputConsumer(commandInvoker, wordsMatchEvaluator);
+    inputConsumer = new InputConsumer(commandInvoker, wordsMatchEvaluator, " ,.");
   }
 
   @Test
@@ -52,7 +52,7 @@ class InputConsumerTest {
 
   @Test
   void inputConsumerTest_shouldExecuteSearchCommand() {
-    String shouldExecuteSearchCommandString = "should,execute search command";
+    String shouldExecuteSearchCommandString = "should,execute.search command";
     List<String> expectedInputWords = List.of("should", "execute", "search", "command");
 
     inputConsumer.accept(shouldExecuteSearchCommandString);

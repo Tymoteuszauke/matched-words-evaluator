@@ -1,7 +1,7 @@
 package org.evaluator.core;
 
 import java.util.List;
-import org.evaluator.dto.SourceEvaluations;
+import org.evaluator.core.dto.SourceEvaluations;
 
 public interface WordsMatchEvaluator {
 
