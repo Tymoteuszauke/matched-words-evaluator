@@ -27,7 +27,7 @@ public class ArrayListWordsLoader implements WordsLoader<List<String>> {
                     .filter(s -> !s.isBlank())
                     .collect(Collectors.toList());
 
-            sourceWords.put(path, fileWords);
+            sourceWords.put(getFileName(path), fileWords);
           } catch (FileNotFoundException e) {
             e.printStackTrace();
           }

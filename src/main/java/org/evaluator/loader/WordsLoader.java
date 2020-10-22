@@ -18,4 +18,8 @@ public interface WordsLoader<D> {
   }
 
   Map<String, D> load(Collection<String> filePaths);
+
+  default String getFileName(String filePath) {
+    return filePath.substring(filePath.lastIndexOf("/") + 1);
+  }
 }

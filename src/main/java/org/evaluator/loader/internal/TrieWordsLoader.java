@@ -29,7 +29,7 @@ public class TrieWordsLoader implements WordsLoader<Trie> {
                 .filter(s -> !s.isBlank())
                 .forEach(trie::insert);
 
-            sourceWords.put(path, trie);
+            sourceWords.put(getFileName(path), trie);
           } catch (FileNotFoundException e) {
             e.printStackTrace();
           }
