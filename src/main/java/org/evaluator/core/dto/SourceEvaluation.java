@@ -51,7 +51,7 @@ public class SourceEvaluation implements Comparable<SourceEvaluation> {
 
   @Override
   public String toString() {
-    NumberFormat percentageNumberFormat = NumberFormat.getPercentInstance();
-    return sourceName + " : " + percentageNumberFormat.format(score);
+    NumberFormat percentageNumberFormat = NumberFormat.getNumberInstance();
+    return sourceName + " : " + percentageNumberFormat.format(score) + "%";
   }
 }
