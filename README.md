@@ -32,6 +32,7 @@ So after some digging I found [Trie](https://www.baeldung.com/trie-java) and I u
    * InputReceiver test - I know that I could use ArrayByteInputStream there, it seems I had some issues and couldn't make Scanner.nextLine() to read line properly :(
    * Didn't have time to cover more test cases (EvaluatorRunner)
    * Some naming could be better (need code review to discuss different ideas!)
+   * I would create some printer service or component that would print SourceEvaluation properly and not to rely on custom toString() method implementation. I did that because it was more convenient in quick run but having this separated would be additional perk of having external configuration (property file) for number format or prinitng format overall. 
 
 4. I was not sure whether I was allowed to use assertJ for test assertions. It is assertion library, not "directly" testing :). I'm not big fun of junit assertions and with assertJ I would do more concrete tests.
 
