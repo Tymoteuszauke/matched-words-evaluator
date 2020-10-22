@@ -8,11 +8,11 @@ import org.evaluator.dto.SourceEvaluation;
 import org.evaluator.dto.SourceEvaluations;
 import org.evaluator.trie.Trie;
 
-public class TrieWordsMatchScoreEvaluator implements WordsMatchScoreEvaluator {
+public class TrieWordsMatchEvaluator implements WordsMatchEvaluator {
 
   private final Map<String, Trie> wordsData;
 
-  public TrieWordsMatchScoreEvaluator(Map<String, Trie> wordsData) {
+  public TrieWordsMatchEvaluator(Map<String, Trie> wordsData) {
     this.wordsData = wordsData;
   }
 
@@ -25,7 +25,6 @@ public class TrieWordsMatchScoreEvaluator implements WordsMatchScoreEvaluator {
     wordsData.forEach(
         (key, value) -> {
           long matchedWordsCount = inputWords.stream().filter(value::find).count();
-
           scores.put(
               SourceEvaluation.of(key, calculatePercents(inputWordsAmount, matchedWordsCount)));
         });

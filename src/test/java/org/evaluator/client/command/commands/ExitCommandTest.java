@@ -5,19 +5,19 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import org.evaluator.client.InputReceiver;
+import org.evaluator.client.receiver.ScannerInputReceiver;
 import org.junit.jupiter.api.Test;
 
 class ExitCommandTest {
 
   @Test
   void shouldInvokeStop() {
-    InputReceiver inputReceiver = mock(InputReceiver.class);
-    ExitCommand exitCommand = new ExitCommand(inputReceiver);
+    ScannerInputReceiver scannerInputReceiver = mock(ScannerInputReceiver.class);
+    ExitCommand exitCommand = new ExitCommand(scannerInputReceiver);
 
     exitCommand.execute();
 
-    verify(inputReceiver, times(1)).stop();
+    verify(scannerInputReceiver, times(1)).stop();
     assertEquals(":exit", exitCommand.getKey());
   }
 }

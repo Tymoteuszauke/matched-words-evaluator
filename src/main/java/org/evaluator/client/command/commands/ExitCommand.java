@@ -1,7 +1,7 @@
 package org.evaluator.client.command.commands;
 
-import org.evaluator.client.InputReceiver;
 import org.evaluator.client.command.Command;
+import org.evaluator.client.receiver.InputReceiver;
 
 public class ExitCommand implements Command {
 

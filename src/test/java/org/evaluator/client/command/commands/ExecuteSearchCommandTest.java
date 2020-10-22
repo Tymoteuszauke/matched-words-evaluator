@@ -6,7 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
-import org.evaluator.core.WordsMatchScoreEvaluator;
+import org.evaluator.core.WordsMatchEvaluator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 class ExecuteSearchCommandTest {
 
   @Mock
-  private WordsMatchScoreEvaluator wordsMatchScoreEvaluator;
+  private WordsMatchEvaluator wordsMatchEvaluator;
 
   @BeforeEach
   void setUp() {
@@ -26,10 +26,10 @@ class ExecuteSearchCommandTest {
   void shouldInvokeGetEvaluations() {
     List<String> inputWords = List.of("Tolkien", "Sapkowski", "Gombrowicz");
     ExecuteSearchCommand executeSearchCommand =
-        new ExecuteSearchCommand(inputWords, wordsMatchScoreEvaluator);
+        new ExecuteSearchCommand(inputWords, wordsMatchEvaluator);
     executeSearchCommand.execute();
 
-    verify(wordsMatchScoreEvaluator, times(1)).getEvaluations(eq(inputWords));
+    verify(wordsMatchEvaluator, times(1)).getEvaluations(eq(inputWords));
     assertEquals(":search", executeSearchCommand.getKey());
   }
 }

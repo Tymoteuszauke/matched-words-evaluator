@@ -15,12 +15,12 @@ import org.evaluator.dto.SourceEvaluation;
 import org.evaluator.dto.SourceEvaluations;
 import org.junit.jupiter.api.Test;
 
-class TrieWordsMatchScoreEvaluatorTest {
+class TrieWordsMatchEvaluatorTest {
 
   @Test
   void rankedEvaluations_shouldReturnInScoreDescOrder() {
-    TrieWordsMatchScoreEvaluator arrayListMatchedWordsEvaluator =
-        new TrieWordsMatchScoreEvaluator(
+    TrieWordsMatchEvaluator arrayListMatchedWordsEvaluator =
+        new TrieWordsMatchEvaluator(
             Map.of(
                 FRUIT_SOURCE,
                 trie(someFruitData()),

@@ -7,11 +7,11 @@ import java.util.Map;
 import org.evaluator.dto.SourceEvaluation;
 import org.evaluator.dto.SourceEvaluations;
 
-public class ArrayListWordsMatchScoreEvaluator implements WordsMatchScoreEvaluator {
+public class ArrayListWordsMatchEvaluator implements WordsMatchEvaluator {
 
   private final Map<String, List<String>> wordsData;
 
-  public ArrayListWordsMatchScoreEvaluator(Map<String, List<String>> wordsData) {
+  public ArrayListWordsMatchEvaluator(Map<String, List<String>> wordsData) {
     this.wordsData = wordsData;
   }
 

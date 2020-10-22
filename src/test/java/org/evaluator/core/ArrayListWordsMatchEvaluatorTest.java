@@ -14,11 +14,11 @@ import org.evaluator.dto.SourceEvaluation;
 import org.evaluator.dto.SourceEvaluations;
 import org.junit.jupiter.api.Test;
 
-class ArrayListWordsMatchScoreEvaluatorTest {
+class ArrayListWordsMatchEvaluatorTest {
 
   @Test
   void rankedEvaluations_shouldReturnInScoreDescOrder() {
-    ArrayListWordsMatchScoreEvaluator arrayListMatchedWordsEvaluator = new ArrayListWordsMatchScoreEvaluator(
+    ArrayListWordsMatchEvaluator arrayListMatchedWordsEvaluator = new ArrayListWordsMatchEvaluator(
         Map.of(FRUIT_SOURCE, someFruitData(),
             ANIMAL_SOURCE, someAnimalData(),
             MIXED_SOURCE, someMixedData()));

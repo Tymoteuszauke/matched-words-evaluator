@@ -3,7 +3,7 @@ package org.evaluator.core;
 import java.util.List;
 import org.evaluator.dto.SourceEvaluations;
 
-public interface WordsMatchScoreEvaluator {
+public interface WordsMatchEvaluator {
 
   SourceEvaluations getEvaluations(List<String> inputWords);
 

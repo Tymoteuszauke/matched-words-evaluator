@@ -4,18 +4,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 import org.evaluator.client.command.Command;
-import org.evaluator.core.WordsMatchScoreEvaluator;
+import org.evaluator.core.WordsMatchEvaluator;
 import org.evaluator.dto.SourceEvaluations;
 
 public class ExecuteSearchCommand implements Command {
 
   private final List<String> inputWords;
-  private final WordsMatchScoreEvaluator wordsMatchScoreEvaluator;
+  private final WordsMatchEvaluator wordsMatchEvaluator;
 
   public ExecuteSearchCommand(
-      List<String> inputWords, WordsMatchScoreEvaluator wordsMatchScoreEvaluator) {
+      List<String> inputWords, WordsMatchEvaluator wordsMatchEvaluator) {
     this.inputWords = inputWords;
-    this.wordsMatchScoreEvaluator = wordsMatchScoreEvaluator;
+    this.wordsMatchEvaluator = wordsMatchEvaluator;
   }
 
   @Override
@@ -25,7 +25,7 @@ public class ExecuteSearchCommand implements Command {
 
   @Override
   public void execute() {
-    SourceEvaluations evaluations = wordsMatchScoreEvaluator.getEvaluations(inputWords);
+    SourceEvaluations evaluations = wordsMatchEvaluator.getEvaluations(inputWords);
     System.out.println(evaluations);
   }
 
@@ -33,7 +33,7 @@ public class ExecuteSearchCommand implements Command {
   public String toString() {
     return new StringJoiner(", ", ExecuteSearchCommand.class.getSimpleName() + "[", "]")
         .add("inputWords=" + inputWords)
-        .add("wordsMatchScoreEvaluator=" + wordsMatchScoreEvaluator)
+        .add("wordsMatchScoreEvaluator=" + wordsMatchEvaluator)
         .toString();
   }
 
@@ -47,11 +47,11 @@ public class ExecuteSearchCommand implements Command {
     }
     ExecuteSearchCommand that = (ExecuteSearchCommand) o;
     return Objects.equals(inputWords, that.inputWords) &&
-        Objects.equals(wordsMatchScoreEvaluator, that.wordsMatchScoreEvaluator);
+        Objects.equals(wordsMatchEvaluator, that.wordsMatchEvaluator);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(inputWords, wordsMatchScoreEvaluator);
+    return Objects.hash(inputWords, wordsMatchEvaluator);
   }
 }

@@ -2,7 +2,7 @@ package org.evaluator.core;
 
 import org.junit.jupiter.api.Test;
 
-class WordsMatchScoreEvaluatorTest {
+class WordsMatchEvaluatorTest {
 
   @Test
   void name() {
