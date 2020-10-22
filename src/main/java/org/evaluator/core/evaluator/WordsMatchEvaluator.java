@@ -1,4 +1,4 @@
-package org.evaluator.core;
+package org.evaluator.core.evaluator;
 
 import java.util.List;
 import org.evaluator.core.dto.SourceEvaluations;

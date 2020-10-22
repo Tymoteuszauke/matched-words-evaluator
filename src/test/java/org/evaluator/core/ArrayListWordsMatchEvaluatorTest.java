@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import org.evaluator.core.dto.SourceEvaluation;
 import org.evaluator.core.dto.SourceEvaluations;
+import org.evaluator.core.evaluator.ArrayListWordsMatchEvaluator;
 import org.junit.jupiter.api.Test;
 
 class ArrayListWordsMatchEvaluatorTest {

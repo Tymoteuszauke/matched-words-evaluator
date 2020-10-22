@@ -16,9 +16,9 @@ import org.evaluator.client.command.commands.ExitCommand;
 import org.evaluator.client.receiver.ConsoleInputReceiver;
 import org.evaluator.client.receiver.InputReceiver;
 import org.evaluator.client.receiver.ScannerInputReceiver;
-import org.evaluator.core.ArrayListWordsMatchEvaluator;
-import org.evaluator.core.TrieWordsMatchEvaluator;
-import org.evaluator.core.WordsMatchEvaluator;
+import org.evaluator.core.evaluator.ArrayListWordsMatchEvaluator;
+import org.evaluator.core.evaluator.TrieWordsMatchEvaluator;
+import org.evaluator.core.evaluator.WordsMatchEvaluator;
 import org.evaluator.loader.WordsLoader;
 import org.evaluator.util.PropertiesLoader;
 

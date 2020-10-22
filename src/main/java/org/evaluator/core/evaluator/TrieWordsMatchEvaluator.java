@@ -1,4 +1,4 @@
-package org.evaluator.core;
+package org.evaluator.core.evaluator;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Map;
 import org.evaluator.core.dto.SourceEvaluation;
 import org.evaluator.core.dto.SourceEvaluations;
+import org.evaluator.trie.Trie;
 
-public class ArrayListWordsMatchEvaluator implements WordsMatchEvaluator {
+public class TrieWordsMatchEvaluator implements WordsMatchEvaluator {
 
-  private final Map<String, List<String>> wordsData;
+  private final Map<String, Trie> wordsData;
 
-  public ArrayListWordsMatchEvaluator(Map<String, List<String>> wordsData) {
+  public TrieWordsMatchEvaluator(Map<String, Trie> wordsData) {
     this.wordsData = wordsData;
   }
 
@@ -23,7 +24,7 @@ public class ArrayListWordsMatchEvaluator implements WordsMatchEvaluator {
     int inputWordsAmount = inputWords.size();
     wordsData.forEach(
         (key, value) -> {
-          long matchedWordsCount = inputWords.stream().filter(value::contains).count();
+          long matchedWordsCount = inputWords.stream().filter(value::find).count();
           scores.put(
               SourceEvaluation.of(key, calculatePercents(inputWordsAmount, matchedWordsCount)));
         });
@@ -31,7 +32,7 @@ public class ArrayListWordsMatchEvaluator implements WordsMatchEvaluator {
     System.out.println(
         "getEvaluations finished after "
             + Duration.between(start, finish).toMillis()
-            + " milliseconds");
+            + "milliseconds");
     return scores;
   }
 }

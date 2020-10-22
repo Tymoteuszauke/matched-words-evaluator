@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import org.evaluator.core.dto.SourceEvaluation;
 import org.evaluator.core.dto.SourceEvaluations;
+import org.evaluator.core.evaluator.TrieWordsMatchEvaluator;
 import org.junit.jupiter.api.Test;
 
 class TrieWordsMatchEvaluatorTest {

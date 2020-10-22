@@ -11,7 +11,7 @@ import org.evaluator.client.command.Command;
 import org.evaluator.client.command.CommandInvoker;
 import org.evaluator.client.command.commands.ExecuteSearchCommand;
 import org.evaluator.client.command.commands.PrintUnknownCommandCommand;
-import org.evaluator.core.WordsMatchEvaluator;
+import org.evaluator.core.evaluator.WordsMatchEvaluator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

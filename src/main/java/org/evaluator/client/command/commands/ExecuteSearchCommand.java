@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 import org.evaluator.client.command.Command;
-import org.evaluator.core.WordsMatchEvaluator;
 import org.evaluator.core.dto.SourceEvaluations;
+import org.evaluator.core.evaluator.WordsMatchEvaluator;
 
 public class ExecuteSearchCommand implements Command {
 
