@@ -1,6 +1,6 @@
-##Matched words evaluator
+## Matched words evaluator
 
-####Goals:
+#### Goals:
 
 1. Application should read all the text files in given directory, build in memory representation of the files and their contents
 2. Application should provide command prompt allowing interactive searches to the user 
