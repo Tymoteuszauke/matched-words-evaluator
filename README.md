@@ -22,17 +22,17 @@ Application supports 2 additional flags:
     --arrayListEvaluator (that will use ArrayList as words data structure, I left it only for comparison tests)
     
 #### Developer comments
-1. After starting coding task I did some research for proper data structure for this task. I had glimps from the past (studies) that there was a tree structure that would fit got the task.
-So after some digging I found [Trie](https://www.baeldung.com/trie-java) and I used this as default implementation.
+1. After starting coding task I did some research for proper data structure for this task. I had glimps from the studies that there was a tree structure that would fit.
+So after some digging I found [Trie](https://www.baeldung.com/trie-java) and I used this as a default data structure used to keep loaded words in.
 
-2. If console had to have commands, my first idea was to use command pattern here. Thanks to this there is a possibility of extending application for more commands if required without.
+2. If console had to have commands, my first idea was to use command pattern here. Thanks to this there is an option of extending application for more commands if required.
 
 3. What for I did not have time:
    * Some argument parser. There are nasty methods with nasty if/elses in EvaluatorRunner class.
-   * InputReceiver test - I know that I could use ArrayByteInputStream there, it seems I had some issues and couldn't make Scanner.nextLine() to read line properly :(
+   * InputReceiver test - I know that I could use ArrayByteInputStream there, it seems I had some issues and couldn't make Scanner.nextLine() to read line properly in test case :(
    * Didn't have time to cover more test cases (EvaluatorRunner)
    * Some naming could be better (need code review to discuss different ideas!)
-   * I would create some printer service or component that would print SourceEvaluation properly and not to rely on custom toString() method implementation. I did that because it was more convenient in quick run but having this separated would be additional perk of having external configuration (property file) for number format or prinitng format overall. 
+   * I would also create some printer service or component that would print SourceEvaluation properly and not to rely on custom toString() method implementation. I did that because it was more convenient in quick run but having this separated would be additional perk of having external configuration (property file) for number format or prinitng format overall. 
 
 4. I was not sure whether I was allowed to use assertJ for test assertions. It is assertion library, not "directly" testing :). I'm not big fun of junit assertions and with assertJ I would do more concrete tests.
 
