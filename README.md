@@ -13,7 +13,7 @@
 
 #### How to run:
     ./build.sh (for linux/macos/windows10)
-    java -jar build/lib/matched-words-evaluator-1.0-0.jar files
+    java -jar build/libs/matched-words-evaluator-1.0-0.jar files
 
 ...where *files* is path to directory with text files.
 Application supports 2 additional flags:
