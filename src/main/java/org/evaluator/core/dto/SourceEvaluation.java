@@ -1,6 +1,7 @@
 package org.evaluator.core.dto;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class SourceEvaluation implements Comparable<SourceEvaluation> {
 
@@ -31,10 +32,10 @@ public class SourceEvaluation implements Comparable<SourceEvaluation> {
 
     SourceEvaluation that = (SourceEvaluation) o;
 
-    if (sourceName != null ? !sourceName.equals(that.sourceName) : that.sourceName != null) {
+    if (!Objects.equals(sourceName, that.sourceName)) {
       return false;
     }
-    return score != null ? score.equals(that.score) : that.score == null;
+    return Objects.equals(score, that.score);
   }
 
   @Override
